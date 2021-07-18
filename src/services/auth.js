@@ -22,7 +22,7 @@ export const deleteUser = () => {
 export async function loginService(email, password) {
     return axiosInstance
         .post("/api/usuario/login", { email, password })
-        .then(({ accessToken }) => {
+        .then(({ data: { accessToken } }) => {
             const decoded = jwt_decode(accessToken);
             const user = {
                 email: decoded.email,
