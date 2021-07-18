@@ -1,6 +1,6 @@
 import { Button, CircularProgress, Container, TextField, Typography, withStyles } from '@material-ui/core';
 import React, { Component } from 'react'
-import { loginService } from '../services/auth';
+import { loginService } from '../../services/auth';
 
 const styles = theme => ({
     title: {

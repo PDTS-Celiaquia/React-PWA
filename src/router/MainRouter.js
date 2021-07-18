@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import NavBar from '../components/common/NavBar';
 import Cuestionario from '../components/Cuestionario';
-import LoginPage from '../components/LoginPage';
+import LoginPage from '../components/auth/LoginPage';
 
 function MainRouter() {
   return (
