@@ -48,7 +48,7 @@ class RegisterPage extends Component {
     register(e) {
         e.preventDefault()
         const { nombre, apellido, email, password, passwordConfirm } = this.state
-        if (password == passwordConfirm) {
+        if (password === passwordConfirm) {
             this.setState({ passwordsNotMatch: false, error: null, loading: true })
             registerService({ nombre, apellido, email, password })
                 .then(
