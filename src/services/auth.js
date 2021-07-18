@@ -19,9 +19,24 @@ export const deleteUser = () => {
     localStorage.removeItem("user");
 };
 
-export async function loginService(email, password) {
+export async function loginService(data) {
     return axiosInstance
-        .post("/api/usuario/login", { email, password })
+        .post("/api/usuario/login", data)
+        .then(({ data: { accessToken } }) => {
+            const decoded = jwt_decode(accessToken);
+            const user = {
+                email: decoded.email,
+                role: decoded.role,
+                accessToken: accessToken
+            }
+            setUser(user);
+            return user;
+        })
+};
+
+export async function registerService(data) {
+    return axiosInstance
+        .post("/api/usuario/register", data)
         .then(({ data: { accessToken } }) => {
             const decoded = jwt_decode(accessToken);
             const user = {

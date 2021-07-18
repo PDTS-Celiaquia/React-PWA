@@ -45,7 +45,7 @@ class LoginPage extends Component {
         e.preventDefault()
         this.setState({ error: null, loading: true })
         const { email, password } = this.state
-        loginService(email, password)
+        loginService({email, password})
             .then(
                 () => this.props.history.push("/"),
                 error => this.setState({ error, loading: false })
@@ -74,6 +74,7 @@ class LoginPage extends Component {
                         fullWidth
                         variant="outlined"
                         required
+                        autoComplete="email"
                         value={email}
                         onChange={this.handleChange}
                     />
@@ -85,6 +86,7 @@ class LoginPage extends Component {
                         fullWidth
                         variant="outlined"
                         required
+                        autoComplete="current-password"
                         value={password}
                         onChange={this.handleChange}
                     />
