@@ -1,19 +1,19 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { lazy } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from '../components/common/NavBar';
-import Cuestionario from '../components/Cuestionario';
-import LoginPage from '../components/auth/LoginPage';
-import RegisterPage from '../components/auth/RegisterPage';
+const Cuestionario = lazy(() => import('../components/Cuestionario'));
+const LoginPage = lazy(() => import('../components/auth/LoginPage'));
+const RegisterPage = lazy(() => import('../components/auth/RegisterPage'));
 
 function MainRouter() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Route path="/" component={NavBar} />
+      <NavBar />
+      <Switch>
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/cuestionario" component={Cuestionario} />
-      </div>
+      </Switch>
     </BrowserRouter>
   );
 }
