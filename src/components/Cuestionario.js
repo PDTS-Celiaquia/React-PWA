@@ -52,7 +52,7 @@ class Cuestionario extends Component {
             dietaSinTACC: true,
             frecuenciaTACC: "0",
             verduras: true,
-            frutas: "0",
+            frutas: "",
             carne: true,
             error: null,
             loading: false
@@ -85,15 +85,20 @@ class Cuestionario extends Component {
             celiaco, diagnostico, tratamiento, dietaSinTACC,
             frecuenciaTACC, verduras, frutas, carne
         } = this.state;
+        this.setState({loading: true})
         sendCuestionario({
             celiaco, diagnostico, tratamiento, dietaSinTACC,
             frecuenciaTACC, verduras, frutas, carne
-        })
-            .then(response => console.log(response))
-            .catch(error => {
+        }).then(
+            response => {
+                console.log(response)
+                this.props.history.push("/")
+            },
+            error => {
                 console.log(error)
-                this.setState({ error })
-            })
+                this.setState({ error, loading: false })
+            }
+        )
     }
 
     render() {
@@ -104,6 +109,11 @@ class Cuestionario extends Component {
         const { classes } = this.props;
         return (
             <Container className={classes.container} maxWidth="xs">
+                {error && (
+                    <Typography color="error" variant="body1">
+                        Ha ocurrido un error
+                    </Typography>
+                )}
                 <Typography className={classes.title} variant="h6">
                     Cuestionario
                 </Typography>
@@ -133,7 +143,8 @@ class Cuestionario extends Component {
                             onChange={this.handleChange}
                             type="number"
                             inputProps={{ min: 0, max: 100 }}
-                            required />
+                            required
+                        />
                     </FormControl>
 
                     <Divider light />
@@ -224,6 +235,19 @@ class Cuestionario extends Component {
                             value={verduras}
                             onChange={this.handleChangeCheckbox}
                         />
+                    </FormControl>
+
+                    <Divider light />
+
+                    <FormControl component="fieldset" className={classes.element}>
+                        <FormLabel component="legend"> ¿Cuántas frutas consume a diario?</FormLabel>
+                        <TextField
+                            id="frutas"
+                            value={frutas}
+                            onChange={this.handleChange}
+                            type="number"
+                            inputProps={{ min: 0, max: 20 }}
+                            required />
                     </FormControl>
 
                     <Divider light />

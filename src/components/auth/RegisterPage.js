@@ -54,7 +54,7 @@ class RegisterPage extends Component {
             this.setState({ passwordsNotMatch: false, error: null, loading: true })
             registerService({ nombre, apellido, email, password })
                 .then(
-                    () => this.props.history.push("/"),
+                    () => this.props.history.push("/cuestionario"),
                     error => this.setState({ error, loading: false })
                 )
         } else {
