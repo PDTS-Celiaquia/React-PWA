@@ -45,6 +45,8 @@ class RegisterPage extends Component {
         this.setState({ [id]: value })
     }
 
+
+
     register(e) {
         e.preventDefault()
         const { nombre, apellido, email, password, passwordConfirm } = this.state
