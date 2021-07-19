@@ -1,4 +1,7 @@
-import { MenuItem, Select, TextField, Button, Divider, FormControl, FormLabel, FormControlLabel, CircularProgress, Container, RadioGroup, Radio, Typography, withStyles } from '@material-ui/core';
+import {
+    TextField, Button, Divider, FormControl, FormLabel, FormControlLabel,
+    CircularProgress, Container, RadioGroup, Radio, Typography, withStyles
+} from '@material-ui/core';
 import React, { Component } from 'react'
 import { sendCuestionario } from '../services/cuestionario';
 
@@ -44,12 +47,12 @@ class Cuestionario extends Component {
         super(props);
         this.state = {
             celiaco: true,
-            diagnostico: null,
+            diagnostico: "",
             tratamiento: true,
             dietaSinTACC: true,
             frecuenciaTACC: "0",
             verduras: true,
-            frutas: true,
+            frutas: "0",
             carne: true,
             error: null,
             loading: false
@@ -121,7 +124,9 @@ class Cuestionario extends Component {
                     <Divider light />
 
                     <FormControl component="fieldset" className={classes.element}>
-                        <FormLabel component="legend">¿Hace cuantos años aproximadamente fue diagnosticado?</FormLabel>
+                        <FormLabel component="legend">
+                            ¿Hace cuantos años aproximadamente fue diagnosticado?
+                        </FormLabel>
                         <TextField
                             id="diagnostico"
                             value={diagnostico}
@@ -134,7 +139,9 @@ class Cuestionario extends Component {
                     <Divider light />
 
                     <FormControl component="fieldset" className={classes.element}>
-                        <FormLabel component="legend"> ¿Concurre a un hospital público para ser tratado por su celiaquía?</FormLabel>
+                        <FormLabel component="legend">
+                            ¿Concurre a un hospital público para ser tratado por su celiaquía?
+                        </FormLabel>
                         <StyledCheckbox
                             id="tratamiento"
                             aria-label="tratamiento"
@@ -147,7 +154,9 @@ class Cuestionario extends Component {
                     <Divider light />
 
                     <FormControl component="fieldset" className={classes.element}>
-                        <FormLabel component="legend"> ¿Usted considera que adhiere correctamente a la dieta libre de gluten?</FormLabel>
+                        <FormLabel component="legend">
+                            ¿Usted considera que adhiere correctamente a la dieta libre de gluten?
+                        </FormLabel>
                         <StyledCheckbox
                             id="dietaSinTACC"
                             aria-label="dietaSinTACC"
@@ -160,7 +169,9 @@ class Cuestionario extends Component {
                     <Divider light />
 
                     <FormControl component="fieldset" className={classes.element}>
-                        <FormLabel component="legend"> ¿Usted consume carnes (pollo, vaca, pescado) a diario?</FormLabel>
+                        <FormLabel component="legend">
+                            ¿Usted consume carnes (pollo, vaca, pescado) a diario?
+                        </FormLabel>
                         <RadioGroup
                             aria-label="frecuenciaTACC"
                             name="frecuenciaTACC"
@@ -203,7 +214,9 @@ class Cuestionario extends Component {
                     <Divider light />
 
                     <FormControl component="fieldset" className={classes.element}>
-                        <FormLabel component="legend"> ¿Usted incluye verduras tanto en almuerzo como en cena?</FormLabel>
+                        <FormLabel component="legend">
+                            ¿Usted incluye verduras tanto en almuerzo como en cena?
+                        </FormLabel>
                         <StyledCheckbox
                             id="verduras"
                             aria-label="verduras"
@@ -216,7 +229,9 @@ class Cuestionario extends Component {
                     <Divider light />
 
                     <FormControl component="fieldset" className={classes.element}>
-                        <FormLabel component="legend"> ¿Usted consume carnes (pollo, vaca, pescado) a diario?</FormLabel>
+                        <FormLabel component="legend">
+                            ¿Usted consume carnes (pollo, vaca, pescado) a diario?
+                        </FormLabel>
                         <StyledCheckbox
                             id="carne"
                             aria-label="carne"
