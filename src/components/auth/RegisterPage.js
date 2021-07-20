@@ -1,5 +1,6 @@
 import { Button, CircularProgress, Container, TextField, Typography, withStyles } from '@material-ui/core';
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import { registerService } from '../../services/auth';
 
 const styles = theme => ({
@@ -17,6 +18,22 @@ const styles = theme => ({
         marginTop: theme.spacing(2),
         margin: "auto",
         display: "flex"
+    },
+
+    linkContainer: {
+        marginTop: theme.spacing(2),
+        justifyContent: "space-between"
+    },
+
+    linkText: {
+        justifyContent: "space-between",
+        marginRight: theme.spacing(1),
+        float: "left",
+        margin: "auto"
+    },
+
+    link: {
+        color: "blue",
     }
 })
 
@@ -153,6 +170,10 @@ class RegisterPage extends Component {
                             ACEPTAR
                         </Button>)
                     }
+                    <div className={classes.linkContainer}>
+                        <p className={classes.linkText}>¿Ya tenés cuenta?</p>
+                        <Link to="/login" className={classes.link}>Ingresá acá</Link>
+                    </div>
                 </form>
             </Container>
         )
