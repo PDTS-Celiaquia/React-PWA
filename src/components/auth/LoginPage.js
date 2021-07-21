@@ -1,5 +1,7 @@
 import { Button, CircularProgress, Container, TextField, Typography, withStyles } from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import { loginService } from '../../services/auth';
 
 const styles = theme => ({
@@ -17,7 +19,24 @@ const styles = theme => ({
         marginTop: theme.spacing(2),
         margin: "auto",
         display: "flex"
+    },
+
+    linkContainer: {
+        marginTop: theme.spacing(2),
+        justifyContent: "space-between"
+    },
+
+    linkText: {
+        justifyContent: "space-between",
+        marginRight: theme.spacing(1),
+        float: "left",
+        margin: "auto"
+    },
+
+    link: {
+        color: "blue",
     }
+
 })
 
 class LoginPage extends Component {
@@ -105,6 +124,10 @@ class LoginPage extends Component {
                             INGRESAR
                         </Button>)
                     }
+                    <div className={classes.linkContainer}>
+                        <p className={classes.linkText}>¿No tenés cuenta?</p>
+                        <Link to="/register" className={classes.link}>Registrate acá</Link>
+                    </div>
                 </form>
             </Container>
         )

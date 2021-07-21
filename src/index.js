@@ -1,17 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import MainRouter from './router/MainRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import getStore from './store';
+import App from './App';
 
 ReactDOM.render(
-  <Provider store={getStore()}>
-    <MainRouter />
-  </Provider>
-  ,
+  <App />,
   document.getElementById('root')
 );
 
