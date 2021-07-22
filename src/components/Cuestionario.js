@@ -1,9 +1,10 @@
 import {
-    TextField, Button, Divider, FormControl, FormLabel, FormControlLabel,
-    CircularProgress, Container, RadioGroup, Radio, Typography, withStyles
+    TextField, Button, Divider, FormControl, FormLabel, FormControlLabel, Container, RadioGroup,
+    Radio, Typography, withStyles
 } from '@material-ui/core';
 import React, { Component } from 'react'
 import { sendCuestionario } from '../services/cuestionario';
+import Loader from './common/Loader';
 
 const StyledCheckbox = (props) => {
     return (
@@ -34,11 +35,6 @@ const styles = theme => ({
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(2),
         margin: "auto"
-    },
-    circularProgress: {
-        marginTop: theme.spacing(2),
-        margin: "auto",
-        display: "flex"
     }
 })
 
@@ -85,7 +81,7 @@ class Cuestionario extends Component {
             celiaco, diagnostico, tratamiento, dietaSinTACC,
             frecuenciaTACC, verduras, frutas, carne
         } = this.state;
-        this.setState({loading: true})
+        this.setState({ loading: true })
         sendCuestionario({
             celiaco, diagnostico, tratamiento, dietaSinTACC,
             frecuenciaTACC, verduras, frutas, carne
@@ -265,13 +261,8 @@ class Cuestionario extends Component {
                         />
                     </FormControl>
 
-
-                    {loading ?
-                        <CircularProgress
-                            className={classes.circularProgress}
-                            color="primary"
-                        />
-                        : (<Button
+                    {loading ? <Loader /> : (
+                        <Button
                             className={classes.element}
                             type="submit"
                             fullWidth
@@ -279,8 +270,8 @@ class Cuestionario extends Component {
                             variant="contained"
                         >
                             ENVIAR
-                        </Button>)
-                    }
+                        </Button>
+                    )}
                 </form>
             </Container>
         )
