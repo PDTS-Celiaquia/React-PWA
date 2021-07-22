@@ -1,7 +1,8 @@
-import { Button, CircularProgress, Container, TextField, Typography, withStyles } from '@material-ui/core';
+import { Button, Container, TextField, Typography, withStyles } from '@material-ui/core';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { registerService } from '../../services/auth';
+import Loader from '../common/Loader';
 
 const styles = theme => ({
     title: {
@@ -14,24 +15,16 @@ const styles = theme => ({
         marginTop: theme.spacing(2),
         margin: "auto"
     },
-    circularProgress: {
-        marginTop: theme.spacing(2),
-        margin: "auto",
-        display: "flex"
-    },
-
     linkContainer: {
         marginTop: theme.spacing(2),
         justifyContent: "space-between"
     },
-
     linkText: {
         justifyContent: "space-between",
         marginRight: theme.spacing(1),
         float: "left",
         margin: "auto"
     },
-
     link: {
         color: "blue",
     }
@@ -155,12 +148,8 @@ class RegisterPage extends Component {
                         value={passwordConfirm}
                         onChange={this.handleChange}
                     />
-                    {loading ?
-                        <CircularProgress
-                            className={classes.circularProgress}
-                            color="primary"
-                        />
-                        : (<Button
+                    {loading ? <Loader /> : (
+                        <Button
                             className={classes.element}
                             type="submit"
                             fullWidth
@@ -168,11 +157,23 @@ class RegisterPage extends Component {
                             variant="contained"
                         >
                             ACEPTAR
-                        </Button>)
-                    }
+                        </Button>
+                    )}
                     <div className={classes.linkContainer}>
-                        <p className={classes.linkText}>¿Ya tenés cuenta?</p>
-                        <Link to="/login" className={classes.link}>Ingresá acá</Link>
+                        <Typography
+                            className={classes.linkText}
+                            variant="body1"
+                        >
+                            ¿Ya tenés cuenta?
+                        </Typography>
+                        <Typography
+                            className={classes.link}
+                            variant="body1"
+                            component={Link}
+                            to="/login"
+                        >
+                            Ingresá acá
+                        </Typography>
                     </div>
                 </form>
             </Container>

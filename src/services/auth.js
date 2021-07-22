@@ -1,5 +1,6 @@
 import jwt_decode from "jwt-decode";
 import axiosInstance from "./axiosInstance";
+import roles from "../constants/roles";
 
 // TODO: implement a secure way to store jwt (no jwt ot cookies. maybe httpOnly cookies)
 export const getToken = () => {
@@ -28,6 +29,10 @@ export async function loginService(data) {
                 email: decoded.email,
                 role: decoded.role,
                 accessToken: accessToken
+            }
+            if (user.role !== roles.PACIENTE) {
+                console.log("Intento de login por parte de un administrativo")
+                throw Error("Solo se permite el acceso de pacientes")
             }
             setUser(user);
             return user;
