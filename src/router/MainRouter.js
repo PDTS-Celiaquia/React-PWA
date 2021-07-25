@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PrivateRoute from '../components/auth/PrivateRoute';
 import Loader from '../components/common/Loader';
 import NavBar from '../components/nav/NavBar';
 
