@@ -15,7 +15,7 @@ function MainRouter() {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/cuestionario" component={Cuestionario} />
+          <PrivateRoute exact path="/cuestionario" component={Cuestionario} />
         </Switch>
       </Suspense>
     </BrowserRouter>
