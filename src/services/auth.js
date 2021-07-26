@@ -20,6 +20,13 @@ export const deleteUser = () => {
     localStorage.removeItem("user");
 };
 
+export const isLoggedIn = (roles) => {
+    const user = getUser();
+    return user &&
+        (!roles || roles.includes(user.role)) &&
+        Date.now() < jwt_decode(user.accessToken).exp * 1000;
+}
+
 export async function loginService(data) {
     return axiosInstance
         .post("/api/usuario/login", data)
