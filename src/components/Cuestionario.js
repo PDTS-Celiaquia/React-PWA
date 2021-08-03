@@ -177,7 +177,7 @@ class Cuestionario extends Component {
 
                     <FormControl component="fieldset" className={classes.element}>
                         <FormLabel component="legend">
-                            ¿Usted consume carnes (pollo, vaca, pescado) a diario?
+                        ¿Con qué frecuencia usted cree que ingiere gluten ya sea voluntaria o involuntariamente?
                         </FormLabel>
                         <RadioGroup
                             aria-label="frecuenciaTACC"
