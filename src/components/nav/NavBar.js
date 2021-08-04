@@ -24,7 +24,6 @@ const styles = theme => ({
 
 function NavBar({ children, location, classes }) {
     // const homeButton = location.pathname !== "/"
-    const user = getUser();
     const history = useHistory()
     return (
         <AppBar position="static" className={classes.bar}>
