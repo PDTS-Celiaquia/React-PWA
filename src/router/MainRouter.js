@@ -8,6 +8,7 @@ const HomePage = lazy(() => import('../components/HomePage'));
 const LoginPage = lazy(() => import('../components/auth/LoginPage'));
 const RegisterPage = lazy(() => import('../components/auth/RegisterPage'));
 const Cuestionario = lazy(() => import('../components/Cuestionario'));
+const ModifyPasswordPage = lazy(() => import('../components/auth/ModifyPasswordPage'))
 
 function MainRouter() {
   return (
@@ -19,6 +20,7 @@ function MainRouter() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
           <PrivateRoute exact path="/cuestionario" component={Cuestionario} />
+          <PrivateRoute exact path="/modifyPassword" component={ModifyPasswordPage} />
         </Switch>
       </Suspense>
     </BrowserRouter>

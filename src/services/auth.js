@@ -46,6 +46,11 @@ export async function loginService(data) {
         })
 };
 
+export async function modifyPasswordService(data){
+    return axiosInstance        
+        .patch("/api/usuario/modifyPassword", data)
+}
+
 export async function registerService(data) {
     return axiosInstance
         .post("/api/usuario/register", data)

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Container, TextField, Typography, withStyles } from '@material-ui/core';
+import { Button, Container, IconButton, InputAdornment, TextField, Typography, withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { loginService } from '../../services/auth';
 import Loader from '../common/Loader';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 const styles = theme => ({
     title: {
@@ -39,17 +40,28 @@ class LoginPage extends Component {
             email: "",
             password: "",
             error: null,
-            loading: false
+            loading: false,
+            showPassword: false
         }
 
-        this.handleChange = this.handleChange.bind(this)
-        this.login = this.login.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.login = this.login.bind(this);
+        this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
+        this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
     }
 
     handleChange(e) {
         const { id, value } = e.target;
         this.setState({ [id]: value })
     }
+    
+    handleClickShowPassword(){
+        this.setState({"showPassword": !this.state.showPassword})
+    }
+
+    handleMouseDownPassword(e) {
+        e.preventDefault();
+    };
 
     login(e) {
         e.preventDefault()
@@ -63,7 +75,7 @@ class LoginPage extends Component {
     }
 
     render() {
-        const { email, password, error, loading } = this.state
+        const { email, password, error, loading, showPassword } = this.state
         const { classes } = this.props
         return (
             <Container className={classes.container} maxWidth="xs">
@@ -91,7 +103,7 @@ class LoginPage extends Component {
                     <TextField
                         className={classes.element}
                         id="password"
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         label="Contraseña"
                         fullWidth
                         variant="outlined"
@@ -99,6 +111,19 @@ class LoginPage extends Component {
                         autoComplete="current-password"
                         value={password}
                         onChange={this.handleChange}
+                        InputProps={{
+                            endAdornment:
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={this.handleClickShowPassword}
+                                onMouseDown={this.handleMouseDownPassword}
+                                edge="end"
+                              >
+                                {showPassword ? <Visibility/> : <VisibilityOff />}
+                              </IconButton>
+                            </InputAdornment>
+                        }}
                     />
                     {loading ? <Loader /> : (
                         <Button
