@@ -2,6 +2,8 @@ import { AppBar, IconButton, Toolbar, Typography, withStyles } from '@material-u
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { getUser } from '../../services/auth'
+import TemporaryDrawer from './TemporaryDrawer'
 
 const styles = theme => ({
     bar: {
@@ -22,10 +24,14 @@ const styles = theme => ({
 
 function NavBar({ children, location, classes }) {
     // const homeButton = location.pathname !== "/"
+    const user = getUser();
+    const role = user ? user.role : null;
+    console.log(role)
     const history = useHistory()
     return (
         <AppBar position="static" className={classes.bar}>
             <Toolbar>
+                {role && <TemporaryDrawer/>}
                 <IconButton
                     className={classes.backIcon}
                     edge="start"
