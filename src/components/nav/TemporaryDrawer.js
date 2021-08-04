@@ -6,10 +6,7 @@ import { SwipeableDrawer } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { deleteUser } from '../../services/auth';
 import { withRouter } from 'react-router-dom';
-import roles from '../../constants/roles';
-
 import MenuIcon from '@material-ui/icons/Menu';
-import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
     
@@ -49,7 +46,7 @@ class TemporaryDrawer extends Component {
     }
 
     list() {
-        const { classes, role } = this.props
+        const { classes } = this.props
         return (
             <div
                 className={classes.list}
