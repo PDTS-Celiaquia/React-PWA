@@ -1,5 +1,6 @@
 import {
-    Button, Container, IconButton, InputAdornment, TextField, Typography, withStyles
+    Button, Container, IconButton, InputAdornment, TextField, Typography, withStyles,
+    Card, CardMedia, CardActionArea, CardContent, CardActions
 } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { getRecetas } from '../../store/actions'
@@ -25,7 +26,14 @@ const styles = theme => ({
     element: {
         marginTop: theme.spacing(2),
         margin: "auto"
-    }
+    },
+    card: {
+        maxWidth: 350,
+        margin: theme.spacing(1)
+      },
+    media: {
+        height: 140,
+    },
 })
 
 class ListaRecetas extends Component {
@@ -51,6 +59,7 @@ class ListaRecetas extends Component {
     render() {
         const { filter } = this.state
         const { recetas, fetching, classes } = this.props
+        const defaultImageUrl = "https://918230.smushcdn.com/2283449/wp-content/uploads/2020/05/celiaquia.jpg?lossy=1&strip=1&webp=1"
         if (!recetas && !fetching) {
             return <p>Error</p>
         }
@@ -82,7 +91,23 @@ class ListaRecetas extends Component {
                 {fetching ? <Loader /> :
                     <>
                         {filteredList.map(receta => (
-                            <Typography>{receta.nombre}</Typography>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                              <CardMedia
+                                className={classes.media}
+                                image={receta.image ? receta.image: defaultImageUrl}
+                                title={receta.nombre}
+                              />
+                              <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                  {receta.nombre}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                  {receta.descripcion}
+                                </Typography>
+                              </CardContent>
+                            </CardActionArea>
+                          </Card>
                         ))}
                     </>
                 }
