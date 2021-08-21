@@ -1,13 +1,15 @@
 import {
-    Button, Container, IconButton, InputAdornment, TextField, Typography, withStyles,
-    Card, CardMedia, CardActionArea, CardContent, CardActions
+    Container, InputAdornment, TextField, withStyles,
 } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { getRecetas } from '../../store/actions'
 import React, { Component } from 'react';
 import Loader from '../common/Loader';
 import SearchIcon from '@material-ui/icons/Search';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import PullToRefresh from 'react-simple-pull-to-refresh';
+import ResumenReceta from './ResumenReceta';
+
+
 
 const styles = theme => ({
     title: {
@@ -16,23 +18,14 @@ const styles = theme => ({
     container: {
         marginTop: theme.spacing(2)
     },
-    header: {
-        margin: theme.spacing(1)
-    },
-    refresh: {
-        float: 'right',
-        color: theme.palette.text.primary,
+    inputComponent: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     element: {
         marginTop: theme.spacing(2),
         margin: "auto"
-    },
-    card: {
-        maxWidth: 350,
-        margin: theme.spacing(1)
-      },
-    media: {
-        height: 140,
     },
 })
 
@@ -59,7 +52,6 @@ class ListaRecetas extends Component {
     render() {
         const { filter } = this.state
         const { recetas, fetching, classes } = this.props
-        const defaultImageUrl = "https://918230.smushcdn.com/2283449/wp-content/uploads/2020/05/celiaquia.jpg?lossy=1&strip=1&webp=1"
         if (!recetas && !fetching) {
             return <p>Error</p>
         }
@@ -67,49 +59,30 @@ class ListaRecetas extends Component {
         const filteredList = re != null ? recetas.filter(receta => receta.nombre.match(re)) : recetas
         return (
             <Container className={classes.container} maxWidth="xs">
-                <div className={classes.header} maxWidth="xs">
-                    <TextField
-                        value={filter}
-                        onChange={this.onFilterChange}
-                        variant="outlined"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
+                <TextField 
+                    value={filter}
+                    className={classes.inputComponent}
+                    onChange={this.onFilterChange}
+                    variant="outlined"                    
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        )
                         }}
-                    />
-                    <IconButton
-                        className={classes.refresh}
-                        onClick={this.refresh}
-                    >
-                        <RefreshIcon />
-                    </IconButton>
-                </div>
+                    
+                />
                 
                 {fetching ? <Loader /> :
-                    <>
+                    <PullToRefresh onRefresh={this.refresh}>
                         {filteredList.map(receta => (
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                              <CardMedia
-                                className={classes.media}
-                                image={receta.image ? receta.image: defaultImageUrl}
-                                title={receta.nombre}
-                              />
-                              <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                  {receta.nombre}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                  {receta.descripcion}
-                                </Typography>
-                              </CardContent>
-                            </CardActionArea>
-                          </Card>
+                            <ResumenReceta 
+                                receta={receta}
+                                key={receta.id}
+                                re={re}/>                            
                         ))}
-                    </>
+                    </PullToRefresh>
                 }
 
             </Container>
