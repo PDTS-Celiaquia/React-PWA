@@ -48,6 +48,11 @@ class ListaRecetas extends Component {
         const { value } = e.target
         this.setState({ filter: value })
     }
+
+    
+
+    onRefresh() {
+    }
     
     render() {
         const { filter } = this.state
@@ -75,7 +80,7 @@ class ListaRecetas extends Component {
                 />
                 
                 {fetching ? <Loader /> :
-                    <PullToRefresh onRefresh={this.refresh}>
+                    <PullToRefresh onRefresh={this.onRefresh}>
                         {filteredList.map(receta => (
                             <ResumenReceta 
                                 receta={receta}

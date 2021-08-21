@@ -27,24 +27,24 @@ export default function ResumenReceta(props){
                 className={classes.card} 
             >
                 <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image={receta.image ? receta.image: defaultImageUrl}
-                    title={receta.nombre}
-                />
-                <CardContent>
-                    <TypographyRe 
-                        gutterBottom 
-                        variant="h5" 
-                        component="h2"
+                    <CardMedia
+                        className={classes.media}
+                        image={receta.image ? receta.image: defaultImageUrl}
                         title={receta.nombre}
-                        re={re}
-                    >
-                    </TypographyRe>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {receta.descripcion}
-                    </Typography>
-                </CardContent>
+                    />
+                    <CardContent>
+                        <TypographyRe 
+                            gutterBottom 
+                            variant="h5" 
+                            component="h2"
+                            title={receta.nombre}
+                            re={re}
+                        >
+                        </TypographyRe>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {receta.descripcion}
+                        </Typography>
+                    </CardContent>
                 </CardActionArea>
             </Card>
         </Link>
