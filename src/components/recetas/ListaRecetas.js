@@ -37,7 +37,8 @@ class ListaRecetas extends Component {
             filter: "",
         }
 
-        this.onFilterChange = this.onFilterChange.bind(this)
+        this.onFilterChange = this.onFilterChange.bind(this);
+        this.onRefresh = this.onRefresh.bind(this);
     }
 
     componentDidMount() {
@@ -49,9 +50,8 @@ class ListaRecetas extends Component {
         this.setState({ filter: value })
     }
 
-    
-
     onRefresh() {
+        return new Promise(this.props.getRecetas);
     }
     
     render() {
