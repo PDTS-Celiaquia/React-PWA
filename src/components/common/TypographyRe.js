@@ -6,7 +6,6 @@ export default function TypographyRe({ title, re, ...restProps }) {
         const split = title.split(re)
         const highlight = title.match(re)
         const arr = Array.from(Array(split.length + highlight.length).keys())
-        console.log(arr, split, highlight)
         return (
             <Typography {...restProps}>
                 {arr.map(index => {
