@@ -59,15 +59,13 @@ class RecetaView extends Component {
         if (loading || fetching) {
             return <Loader />
         }
-
-        const defaultImageUrl = "https://918230.smushcdn.com/2283449/wp-content/uploads/2020/05/celiaquia.jpg?lossy=1&strip=1&webp=1"
         const { nombre, descripcion, instrucciones, ingredientes, image } = receta
         
         return (
             <>
                 <CardMedia
                     className={classes.media}
-                    image={image ? image: defaultImageUrl}
+                    image={image ? image: "/default_receta.jpg"}
                     title={nombre}
                 />
                 <div className={classes.element}>

@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 export default function ResumenReceta(props){
     const classes = useStyles();
     const { receta, re } = props
-    const defaultImageUrl = "https://918230.smushcdn.com/2283449/wp-content/uploads/2020/05/celiaquia.jpg?lossy=1&strip=1&webp=1"
     return (
         <Link underline='none' component={RouterLink} to={location => `${location.pathname}/${receta.id}`}>
             <Card 
@@ -29,7 +28,7 @@ export default function ResumenReceta(props){
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={receta.image ? receta.image: defaultImageUrl}
+                        image={receta.image ? receta.image: "/default_receta.jpg"}
                         title={receta.nombre}
                     />
                     <CardContent>

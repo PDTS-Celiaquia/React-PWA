@@ -3,7 +3,7 @@ import {
     Radio, Typography, withStyles
 } from '@material-ui/core';
 import React, { Component } from 'react'
-import { sendCuestionario } from '../services/cuestionario';
+import { sendCuestionario } from '../services/cuestionario.service';
 import Loader from './common/Loader';
 
 const StyledCheckbox = (props) => {
