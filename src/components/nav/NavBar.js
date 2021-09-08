@@ -2,7 +2,6 @@ import { AppBar, IconButton, Toolbar, Typography, withStyles } from '@material-u
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { getUser } from '../../services/auth'
 import TemporaryDrawer from './TemporaryDrawer'
 
 const styles = theme => ({
